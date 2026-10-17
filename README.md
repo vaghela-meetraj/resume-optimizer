@@ -55,7 +55,7 @@ GOOGLE_API_KEY=your_google_gemini_api_key_here
 
 ### 6. Run it
 ```bash
-python app.py
+python run.py
 ```
 The app will be running at `http://127.0.0.1:5000/`.
 
