@@ -3,7 +3,10 @@ import re
 import threading
 
 import nltk
-import spacy
+try:
+    import spacy
+except Exception:
+    spacy = None
 from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -23,12 +26,18 @@ class NLPProcessor:
 
     def _initialize(self):
         print("Initializing NLP models...")
-        try:
-            self.nlp = spacy.load("en_core_web_sm", disable=['parser', 'ner'])
-        except OSError:
-            os.system("python -m spacy download en_core_web_sm")
-            self.nlp = spacy.load("en_core_web_sm", disable=['parser', 'ner'])
-        self.nlp.max_length = 2_000_000
+        self.nlp = None
+        if spacy is not None:
+            try:
+                self.nlp = spacy.load("en_core_web_sm", disable=['parser', 'ner'])
+                self.nlp.max_length = 2_000_000
+            except Exception:
+                try:
+                    os.system("python -m spacy download en_core_web_sm")
+                    self.nlp = spacy.load("en_core_web_sm", disable=['parser', 'ner'])
+                    self.nlp.max_length = 2_000_000
+                except Exception:
+                    self.nlp = None
 
         try:
             self.stop_words = set(stopwords.words('english'))
@@ -72,15 +81,16 @@ class NLPProcessor:
             matches = re.findall(pattern, text, re.IGNORECASE)
             raw_skills.update([m.strip() for m in matches])
 
-        text_sample = text[:50_000]
-        doc = self.nlp(text_sample)
-        for token in doc:
-            if (token.pos_ in ['PROPN', 'NOUN'] and len(token.text) > 2 and
-                token.text.lower() not in self.stop_words and
-                token.text.lower() not in self.NOISE_TERMS and not token.text.isdigit()):
-                if ('.' in token.text or token.text.isupper() or 
-                    (token.text[0].isupper() and any(c.isupper() for c in token.text[1:]))):
-                    raw_skills.add(token.text)
+        if self.nlp:
+            text_sample = text[:50_000]
+            doc = self.nlp(text_sample)
+            for token in doc:
+                if (token.pos_ in ['PROPN', 'NOUN'] and len(token.text) > 2 and
+                    token.text.lower() not in self.stop_words and
+                    token.text.lower() not in self.NOISE_TERMS and not token.text.isdigit()):
+                    if ('.' in token.text or token.text.isupper() or 
+                        (token.text[0].isupper() and any(c.isupper() for c in token.text[1:]))):
+                        raw_skills.add(token.text)
 
         return {s for s in raw_skills if len(s) > 2 and s.lower() not in self.NOISE_TERMS}
 

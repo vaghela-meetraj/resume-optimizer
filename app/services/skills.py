@@ -39,8 +39,8 @@ def fuzzy_skill_match(resume_skills: set, jd_skills: set) -> dict:
             matched = True
         else:
             for norm_resume_skill in norm_resume.keys():
-                if (len(norm_jd_skill) > 3 and norm_jd_skill in norm_resume_skill) or \
-                   (len(norm_resume_skill) > 3 and norm_resume_skill in norm_jd_skill):
+                if (len(norm_jd_skill) > 3 and re.search(rf'\b{re.escape(norm_jd_skill)}\b', norm_resume_skill)) or \
+                   (len(norm_resume_skill) > 3 and re.search(rf'\b{re.escape(norm_resume_skill)}\b', norm_jd_skill)):
                     partial_matches.add(orig_jd_skill)
                     matched = True
                     break
