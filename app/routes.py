@@ -1,4 +1,3 @@
-import concurrent.futures
 import json
 import time
 
@@ -8,6 +7,7 @@ from .extensions import limiter
 from .services.llm import GEMINI_MODELS, get_gemini_response_with_retry
 from .services.pdf import extract_pdf_text
 from .services.projects import build_prompt, generate_fallback_response, validate_and_fix_projects
+from .services.scoring import calculate_weighted_score
 from .services.skills import fuzzy_skill_match
 
 
@@ -43,15 +43,14 @@ def analyze():
         except (ValueError, RuntimeError) as e:
             return jsonify({"error": str(e)}), 400
 
-        print("[*] Running NLP analysis...")
+        print("[*] Running NLP extraction...")
+        t_nlp_start = time.perf_counter()
         try:
-            with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
-                f_resume = executor.submit(nlp_processor.extract_skills_nlp, resume_text)
-                f_jd = executor.submit(nlp_processor.extract_skills_nlp, job_desc)
-                f_sim = executor.submit(nlp_processor.calculate_semantic_similarity, resume_text, job_desc)
-                resume_skills = f_resume.result(timeout=5)
-                jd_skills = f_jd.result(timeout=5)
-                text_similarity = f_sim.result(timeout=5)
+            resume_skills = nlp_processor.extract_skills_nlp(resume_text)
+            jd_skills = nlp_processor.extract_skills_nlp(job_desc)
+            text_similarity = nlp_processor.calculate_semantic_similarity(resume_text, job_desc)
+            elapsed_nlp_ms = (time.perf_counter() - t_nlp_start) * 1000
+            print(f"[*] NLP extraction completed in {elapsed_nlp_ms:.2f}ms (sequential, zero timeout risk)")
         except Exception as e:
             print(f"[*] NLP error: {e}")
             resume_skills, jd_skills, text_similarity = set(), set(), 0.0
@@ -60,16 +59,22 @@ def analyze():
         matched_skills_list = match_result['exact'] + match_result['partial']
         missing_skills_list = match_result['missing']
         
-        if len(jd_skills) > 0:
-            base_score = (len(matched_skills_list) / len(jd_skills)) * 100
-        else:
-            base_score = 0.0
+        # Scoring v2: Weighted required vs preferred matching (no artificial cap at 95)
+        score_result = calculate_weighted_score(
+            resume_skills,
+            jd_skills,
+            job_desc,
+            skill_categories=getattr(nlp_processor, "tech_skills_patterns", None)
+        )
+        base_score = score_result["score"]
             
         semantic_boost = min(text_similarity * 0.05, 5)
-        final_match_score = min(round(base_score + semantic_boost), 95)
+        final_match_score = min(round(base_score + semantic_boost), 100)
         
         print(f"[*] JD Skills: {len(jd_skills)} | Matched: {len(matched_skills_list)} | Missing: {len(missing_skills_list)}")
-        print(f"[*] Base Skill Match: {base_score:.1f}% | Semantic Boost: {semantic_boost:.1f}% | Final: {final_match_score}%")
+        print(f"[*] Scoring v2: Required {score_result['required']['matched']}/{score_result['required']['total']} | "
+              f"Preferred {score_result['preferred']['matched']}/{score_result['preferred']['total']} | "
+              f"Base: {base_score}% | Boost: {semantic_boost:.1f}% | Final: {final_match_score}%")
 
         print("[*] Building prompt...")
         prompt = build_prompt(missing_skills_list, matched_skills_list, job_desc)
@@ -97,6 +102,8 @@ def analyze():
             "PartialMatches": match_result['partial'],
             "SkillMatchScore": round(base_score),
             "SemanticScore": round(text_similarity),
+            "ScoreBreakdown": score_result,
+            "ScoreVersion": 2,
             "ProjectIdeas": projects,
             "ProcessingTime": round(time.time() - start_time, 2),
             "NLPEnhanced": True,

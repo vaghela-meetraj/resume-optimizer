@@ -1,0 +1,7 @@
+Job Title: Embedded Systems & Firmware Engineer
+Qualifications:
+Strong expertise in C and C++ for embedded firmware development.
+Hands-on experience with microcontroller architectures: ARM Cortex-M, STM32, or ESP32.
+Understanding of communication protocols: UART, SPI, I2C, CAN, and Bluetooth.
+Experience with RTOS (FreeRTOS) and Linux kernel / device drivers.
+Proficient with Git, debugging tools (JTAG, GDB, logic analyzers), and hardware schematics.

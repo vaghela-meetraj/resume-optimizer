@@ -1,0 +1,8 @@
+Job Title: Senior Java Backend Developer
+Requirements:
+5+ years of software development experience in Java (Java 11 or 17).
+Strong experience with Spring Boot, Spring MVC, Spring Data JPA, and Hibernate.
+Database experience with MySQL, PostgreSQL, and Redis caching.
+Messaging systems: Apache Kafka or RabbitMQ.
+Experience building scalable Microservices, REST APIs, Docker containers, and Kubernetes.
+Proficient in Maven, Gradle, Git, JUnit testing, and CI/CD pipelines.

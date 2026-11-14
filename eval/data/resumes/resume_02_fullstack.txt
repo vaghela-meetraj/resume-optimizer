@@ -1,0 +1,12 @@
+CANDIDATE 2 - FULL-STACK DEVELOPER
+Summary: Full-Stack Developer with hands-on experience building modern, responsive web applications.
+Technical Skills:
+Frontend: React, TypeScript, Next.js, Redux, JavaScript, HTML5, CSS3, Tailwind CSS
+Backend: Node.js, Express, REST APIs, GraphQL
+Databases: MongoDB, PostgreSQL, Mongoose, Firebase
+Tools: Git, GitHub, Docker, Vite, Webpack, Postman, Jest, npm
+Experience:
+- Developed single-page applications with React, TypeScript, and Tailwind CSS.
+- Designed secure backend microservices using Node.js, Express, and JWT authentication.
+- Managed NoSQL databases with MongoDB and relational data with PostgreSQL.
+- Built reusable UI components and tested them using Jest and React Testing Library.

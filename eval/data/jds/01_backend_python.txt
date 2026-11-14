@@ -1,0 +1,7 @@
+Job Title: Senior Backend Engineer (Python)
+Requirements:
+We are looking for a Backend Engineer with 3+ years of experience in Python, Flask, or Django.
+Core skills required: PostgreSQL, Redis, Docker, Git, RESTful API design, and CI/CD pipelines.
+Experience with Celery for background tasks and AWS (EC2, S3, RDS) is required.
+Nice to have: Kubernetes, GraphQL, microservices architecture, and automated testing with pytest.
+Must understand SQL query optimization, database indexing, and OOP principles.

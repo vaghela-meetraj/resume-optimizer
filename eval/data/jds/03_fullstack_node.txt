@@ -1,0 +1,7 @@
+Job Title: Full-Stack Engineer (Node.js & React)
+Requirements:
+Proficiency with JavaScript and TypeScript across the full stack.
+Backend: Node.js, Express, REST APIs, and GraphQL.
+Databases: MongoDB, Mongoose, and PostgreSQL.
+Frontend: React, Redux, HTML, CSS, and Tailwind CSS.
+Cloud & DevOps: Docker, AWS (S3, Lambda), Git, GitHub Actions, and JWT authentication.

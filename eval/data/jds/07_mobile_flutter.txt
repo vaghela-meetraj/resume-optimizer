@@ -1,0 +1,7 @@
+Job Title: Mobile Application Developer (Flutter / Dart)
+Qualifications:
+Proven experience building cross-platform mobile apps for iOS and Android using Flutter and Dart.
+State management experience with Provider, Bloc, or Riverpod.
+Integration with RESTful APIs, JSON parsing, WebSockets, and third-party SDKs.
+Firebase integration: Cloud Firestore, Push Notifications, Firebase Auth.
+Familiarity with Git, SQLite, mobile CI/CD, App Store and Google Play deployment.

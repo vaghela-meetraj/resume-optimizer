@@ -1,0 +1,7 @@
+Job Title: Data Engineer (Big Data & Pipelines)
+Requirements:
+Expert in SQL, Python, and data modeling (star schema, snowflake schema).
+Experience with Apache Spark, PySpark, Apache Kafka, and Apache Airflow.
+Cloud data warehousing: Snowflake, Google BigQuery, or Amazon Redshift.
+Experience with PostgreSQL, MongoDB, Docker, Git, and Linux.
+Understanding of ETL / ELT pipeline design, data streaming, and REST APIs.

@@ -1,18 +1,77 @@
-# Virtual Environment
-venv/
-.venv/
-
-# Environment Variables
-.env
-
-# Python Cache Files
+# ==========================================
+# Python & Bytecode
+# ==========================================
 __pycache__/
-*.pyc
-*.pyo
+*.py[cod]
+*$py.class
+*.so
 *.pyd
-.pytest_cache/
 
-# Editor and OS Files
-.vscode/
+# ==========================================
+# Virtual Environments
+# ==========================================
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# ==========================================
+# Environment Variables & Secrets (CRITICAL)
+# ==========================================
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.cert
+
+# ==========================================
+# Testing & Quality Gates
+# ==========================================
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+*.cover
+*.pyre/
+
+# ==========================================
+# Operating System Artifacts
+# ==========================================
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
+Desktop.ini
+
+# ==========================================
+# IDEs & Text Editors
+# ==========================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# ==========================================
+# Logs & Databases
+# ==========================================
+*.log
+logs/
+*.sqlite
+*.sqlite3
+
+# ==========================================
+# Local Specifications & Internal Roadmaps
+# ==========================================
+versions/
+plan/
+scratch/

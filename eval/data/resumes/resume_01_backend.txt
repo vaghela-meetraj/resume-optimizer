@@ -1,0 +1,12 @@
+CANDIDATE 1 - BACKEND DEVELOPER
+Summary: Software Engineer with 2 years of experience specializing in backend web development.
+Technical Skills:
+Languages: Python, JavaScript, SQL, HTML, CSS, Bash
+Frameworks & Libraries: Flask, Django, FastAPI, Celery, SQLAlchemy
+Databases: PostgreSQL, MySQL, Redis, SQLite
+Tools & Cloud: Docker, Git, GitHub, AWS (EC2, S3), Linux, Postman, pytest
+Experience:
+- Built scalable RESTful APIs using Python, Flask, and PostgreSQL.
+- Implemented asynchronous task processing with Celery and Redis.
+- Containerized microservices using Docker and deployed applications on AWS EC2.
+- Wrote automated unit and integration tests using pytest.

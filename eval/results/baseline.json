@@ -1,0 +1,200 @@
+{
+  "micro_precision": 95.3,
+  "micro_recall": 98.7,
+  "micro_f1": 97.0,
+  "macro_f1": 96.8,
+  "documents": [
+    {
+      "document": "01_backend_python.txt",
+      "ground_truth_count": 19,
+      "extracted_count": 20,
+      "tp": 19,
+      "fp": 1,
+      "fn": 0,
+      "precision": 95.0,
+      "recall": 100.0,
+      "f1": 97.4,
+      "false_positives": [
+        "oop"
+      ],
+      "false_negatives": []
+    },
+    {
+      "document": "02_frontend_react.txt",
+      "ground_truth_count": 17,
+      "extracted_count": 17,
+      "tp": 17,
+      "fp": 0,
+      "fn": 0,
+      "precision": 100.0,
+      "recall": 100.0,
+      "f1": 100.0,
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "document": "03_fullstack_node.txt",
+      "ground_truth_count": 21,
+      "extracted_count": 22,
+      "tp": 21,
+      "fp": 1,
+      "fn": 0,
+      "precision": 95.5,
+      "recall": 100.0,
+      "f1": 97.7,
+      "false_positives": [
+        "devops"
+      ],
+      "false_negatives": []
+    },
+    {
+      "document": "04_ai_ml_engineer.txt",
+      "ground_truth_count": 15,
+      "extracted_count": 15,
+      "tp": 15,
+      "fp": 0,
+      "fn": 0,
+      "precision": 100.0,
+      "recall": 100.0,
+      "f1": 100.0,
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "document": "05_devops_cloud.txt",
+      "ground_truth_count": 19,
+      "extracted_count": 20,
+      "tp": 19,
+      "fp": 1,
+      "fn": 0,
+      "precision": 95.0,
+      "recall": 100.0,
+      "f1": 97.4,
+      "false_positives": [
+        "devops"
+      ],
+      "false_negatives": []
+    },
+    {
+      "document": "06_data_engineer.txt",
+      "ground_truth_count": 15,
+      "extracted_count": 15,
+      "tp": 15,
+      "fp": 0,
+      "fn": 0,
+      "precision": 100.0,
+      "recall": 100.0,
+      "f1": 100.0,
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "document": "07_mobile_flutter.txt",
+      "ground_truth_count": 10,
+      "extracted_count": 8,
+      "tp": 8,
+      "fp": 0,
+      "fn": 2,
+      "precision": 100.0,
+      "recall": 80.0,
+      "f1": 88.9,
+      "false_positives": [],
+      "false_negatives": [
+        "android",
+        "ios"
+      ]
+    },
+    {
+      "document": "08_backend_java.txt",
+      "ground_truth_count": 17,
+      "extracted_count": 19,
+      "tp": 17,
+      "fp": 2,
+      "fn": 0,
+      "precision": 89.5,
+      "recall": 100.0,
+      "f1": 94.4,
+      "false_positives": [
+        "mvc",
+        "spring boot"
+      ],
+      "false_negatives": []
+    },
+    {
+      "document": "09_data_scientist.txt",
+      "ground_truth_count": 14,
+      "extracted_count": 16,
+      "tp": 14,
+      "fp": 2,
+      "fn": 0,
+      "precision": 87.5,
+      "recall": 100.0,
+      "f1": 93.3,
+      "false_positives": [
+        "jupyter",
+        "xgboost"
+      ],
+      "false_negatives": []
+    },
+    {
+      "document": "10_embedded_systems.txt",
+      "ground_truth_count": 7,
+      "extracted_count": 7,
+      "tp": 7,
+      "fp": 0,
+      "fn": 0,
+      "precision": 100.0,
+      "recall": 100.0,
+      "f1": 100.0,
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "document": "resume_01_backend.txt",
+      "ground_truth_count": 25,
+      "extracted_count": 26,
+      "tp": 25,
+      "fp": 1,
+      "fn": 0,
+      "precision": 96.2,
+      "recall": 100.0,
+      "f1": 98.0,
+      "false_positives": [
+        "sqlalchemy"
+      ],
+      "false_negatives": []
+    },
+    {
+      "document": "resume_02_fullstack.txt",
+      "ground_truth_count": 26,
+      "extracted_count": 26,
+      "tp": 26,
+      "fp": 0,
+      "fn": 0,
+      "precision": 100.0,
+      "recall": 100.0,
+      "f1": 100.0,
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "document": "resume_03_data_ml.txt",
+      "ground_truth_count": 22,
+      "extracted_count": 24,
+      "tp": 21,
+      "fp": 3,
+      "fn": 1,
+      "precision": 87.5,
+      "recall": 95.5,
+      "f1": 91.3,
+      "false_positives": [
+        "jupyter",
+        "scipy",
+        "xgboost"
+      ],
+      "false_negatives": [
+        "embeddings"
+      ]
+    }
+  ]
+}

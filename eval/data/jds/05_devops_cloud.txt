@@ -1,0 +1,8 @@
+Job Title: Cloud DevOps & Site Reliability Engineer
+Required Skills:
+Extensive experience with AWS (EC2, S3, IAM, VPC, EKS) and Google Cloud Platform (GCP).
+Infrastructure as Code using Terraform and Ansible.
+Container orchestration with Docker and Kubernetes.
+CI/CD pipeline implementation using Jenkins, GitLab CI, or GitHub Actions.
+Monitoring and alerting with Prometheus, Grafana, and ELK stack.
+Scripting in Bash and Python, Linux system administration, and Git.

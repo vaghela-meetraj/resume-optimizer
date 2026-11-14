@@ -1,0 +1,7 @@
+Job Title: Data Scientist / Statistical Modeler
+Key Qualifications:
+Proficiency in Python and R for data analysis, statistical modeling, and hypothesis testing.
+Strong knowledge of SQL, Pandas, NumPy, Scikit-learn, and Statsmodels.
+Data visualization with Matplotlib, Seaborn, Tableau, or Power BI.
+Experience with machine learning techniques: regression, classification, clustering, random forest, and XGBoost.
+Experience working with Jupyter notebooks, Git, and cloud platforms (AWS or Azure).

@@ -1,0 +1,12 @@
+CANDIDATE 3 - DATA SCIENCE & AI INTERN
+Summary: Data Science enthusiast with a strong foundation in machine learning, statistics, and NLP.
+Technical Skills:
+Languages: Python, R, SQL, C++
+Data Science & ML: Pandas, NumPy, Scikit-learn, PyTorch, TensorFlow, SciPy
+NLP & AI: Hugging Face transformers, NLTK, spaCy, text classification, embeddings, LLMs
+Visualization & Tools: Matplotlib, Seaborn, Tableau, Jupyter Notebook, Git, Docker, Linux
+Experience:
+- Developed machine learning predictive models using Scikit-learn, XGBoost, and Pandas.
+- Implemented NLP sentiment analysis and text classification pipelines using spaCy and PyTorch.
+- Conducted exploratory data analysis and visualized insights using Matplotlib and Seaborn.
+- Collaborated using Git and tracked experiments in Jupyter notebooks.

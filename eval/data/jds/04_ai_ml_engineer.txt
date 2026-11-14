@@ -1,0 +1,7 @@
+Job Title: AI / Machine Learning Engineer
+Key Qualifications:
+Strong proficiency in Python, PyTorch, TensorFlow, Scikit-learn, Pandas, and NumPy.
+Experience in Natural Language Processing (NLP), text classification, embeddings, and Hugging Face transformers.
+Hands-on experience with LLMs, prompt engineering, vector databases (Pinecone, ChromaDB, or FAISS).
+Familiarity with Docker, FastAPI, Git, and ML deployment pipelines.
+Background in machine learning algorithms, deep learning, computer vision, and linear algebra.

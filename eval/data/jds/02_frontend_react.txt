@@ -1,0 +1,7 @@
+Job Title: Senior Frontend Developer (React/TypeScript)
+Responsibilities:
+Build responsive web applications using React, TypeScript, Next.js, and Tailwind CSS.
+State management with Redux Toolkit or Zustand.
+Strong knowledge of HTML5, CSS3, ES6 JavaScript, responsive design, and CSS Grid/Flexbox.
+Experience with REST APIs, GraphQL client integration, and unit testing using Jest and React Testing Library.
+Familiarity with Webpack, Vite, Git, and npm/yarn packages.
