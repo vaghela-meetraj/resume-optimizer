@@ -28,12 +28,14 @@ venv.bak/
 *.cert
 
 # ==========================================
-# Testing & Quality Gates
+# Testing, Linting & Coverage
 # ==========================================
 .pytest_cache/
 .ruff_cache/
 .mypy_cache/
 .coverage
+.coverage.*
+coverage.xml
 htmlcov/
 *.cover
 *.pyre/
@@ -46,9 +48,9 @@ htmlcov/
 ._*
 .Spotlight-V100
 .Trashes
-ehthumbs.db
-Thumbs.db
-Desktop.ini
+[Ee]hthumbs.db
+[Tt]humbs.db
+[Dd]esktop.ini
 
 # ==========================================
 # IDEs & Text Editors
@@ -62,16 +64,29 @@ Desktop.ini
 *.sublime-workspace
 
 # ==========================================
-# Logs & Databases
+# Builds, Distributions & Packages
+# ==========================================
+build/
+dist/
+*.egg-info/
+*.egg
+
+# ==========================================
+# Logs, Databases & Temporary Files
 # ==========================================
 *.log
 logs/
 *.sqlite
 *.sqlite3
+*.tmp
+*.bak
+scratch/
+scratch_*.py
 
 # ==========================================
-# Local Specifications & Internal Roadmaps
+# Local Specifications & Internal Planning
 # ==========================================
 versions/
+Versions/
 plan/
-scratch/
+Plan/

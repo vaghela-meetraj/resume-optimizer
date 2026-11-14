@@ -1,0 +1,10 @@
+{
+  "ProjectTitle": "Production Retrieval-Augmented Generation (RAG) Document Engine",
+  "Description": "Build an enterprise document QA assistant featuring semantic chunking, dense vector retrieval, re-ranking, and strict ground-truth factual guardrails.",
+  "KeySkills": ["Python", "LLM", "LangChain", "Vector Databases", "Embeddings"],
+  "ResumeBullets": [
+    "Engineered enterprise Retrieval-Augmented Generation (RAG) assistant indexing [X]+ technical documents with hybrid semantic and BM25 search.",
+    "Integrated cross-encoder re-ranking algorithms and contextual chunking, boosting ground-truth retrieval precision by [X]% with sub-1.5s latency.",
+    "Established automated RAGAS evaluation pipeline to quantitatively measure hallucination rates and verify factual groundedness of LLM responses."
+  ]
+}

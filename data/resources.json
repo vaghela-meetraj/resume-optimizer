@@ -1,0 +1,201 @@
+{
+  "Docker": {
+    "why": "Industry standard containerization runtime enabling reproducible environments across development and production.",
+    "est_hours": 8,
+    "prerequisites": ["Linux"],
+    "links": [
+      {"title": "Docker Official Orientation and Setup", "url": "https://docs.docker.com/get-started/"},
+      {"title": "Docker Curriculum for Beginners", "url": "https://docker-curriculum.com/"}
+    ]
+  },
+  "Kubernetes": {
+    "why": "De-facto cloud-native container orchestrator managing autoscaling, high availability, and networking at scale.",
+    "est_hours": 16,
+    "prerequisites": ["Docker", "Linux"],
+    "links": [
+      {"title": "Kubernetes Official Tutorials", "url": "https://kubernetes.io/docs/tutorials/"},
+      {"title": "Kubernetes the Hard Way", "url": "https://github.com/kelseyhightower/kubernetes-the-hard-way"}
+    ]
+  },
+  "Python": {
+    "why": "Versatile, expressive language dominating backend web services, data engineering, and machine learning.",
+    "est_hours": 12,
+    "prerequisites": [],
+    "links": [
+      {"title": "Official Python Tutorial", "url": "https://docs.python.org/3/tutorial/"},
+      {"title": "Automate the Boring Stuff with Python", "url": "https://automatetheboringstuff.com/"}
+    ]
+  },
+  "JavaScript": {
+    "why": "Universal language of modern web development spanning frontend browsers and backend Node.js runtimes.",
+    "est_hours": 12,
+    "prerequisites": ["HTML", "CSS"],
+    "links": [
+      {"title": "MDN JavaScript Guide", "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide"},
+      {"title": "javascript.info Tutorial", "url": "https://javascript.info/"}
+    ]
+  },
+  "TypeScript": {
+    "why": "Statically typed JavaScript superset eliminating common runtime errors in enterprise codebases.",
+    "est_hours": 10,
+    "prerequisites": ["JavaScript"],
+    "links": [
+      {"title": "TypeScript Official Handbook", "url": "https://www.typescriptlang.org/docs/handbook/intro.html"},
+      {"title": "TypeScript in 50 Lessons", "url": "https://www.smashingmagazine.com/printed-books/typescript-in-50-lessons/"}
+    ]
+  },
+  "React": {
+    "why": "Most widely used declarative UI library for building reactive single-page applications.",
+    "est_hours": 14,
+    "prerequisites": ["JavaScript"],
+    "links": [
+      {"title": "React Official Documentation", "url": "https://react.dev/learn"},
+      {"title": "Full Stack Open - React", "url": "https://fullstackopen.com/en/part1"}
+    ]
+  },
+  "Node.js": {
+    "why": "Event-driven, non-blocking asynchronous runtime executing high-concurrency network servers.",
+    "est_hours": 10,
+    "prerequisites": ["JavaScript"],
+    "links": [
+      {"title": "Node.js Official Documentation", "url": "https://nodejs.org/en/learn"},
+      {"title": "Express.js Getting Started Guide", "url": "https://expressjs.com/en/starter/installing.html"}
+    ]
+  },
+  "SQL": {
+    "why": "Universal standard declarative query language powering relational databases and data analytics.",
+    "est_hours": 8,
+    "prerequisites": [],
+    "links": [
+      {"title": "SQLBolt Interactive Lessons", "url": "https://sqlbolt.com/"},
+      {"title": "PostgreSQL Tutorial", "url": "https://www.postgresqltutorial.com/"}
+    ]
+  },
+  "PostgreSQL": {
+    "why": "Advanced open-source object-relational database known for reliability, ACID compliance, and rich extension ecosystem.",
+    "est_hours": 10,
+    "prerequisites": ["SQL"],
+    "links": [
+      {"title": "PostgreSQL Official Documentation", "url": "https://www.postgresql.org/docs/"},
+      {"title": "Use The Index, Luke (SQL Indexing Guide)", "url": "https://use-the-index-luke.com/"}
+    ]
+  },
+  "MySQL": {
+    "why": "World's most popular open-source relational database powering web applications and modern cloud DBs.",
+    "est_hours": 8,
+    "prerequisites": ["SQL"],
+    "links": [
+      {"title": "MySQL Tutorial", "url": "https://dev.mysql.com/doc/refman/8.0/en/tutorial.html"},
+      {"title": "MySQL Tutorial for Beginners", "url": "https://www.mysqltutorial.org/"}
+    ]
+  },
+  "Redis": {
+    "why": "Blazing fast in-memory key-value data store used for caching, session management, and pub/sub messaging.",
+    "est_hours": 6,
+    "prerequisites": [],
+    "links": [
+      {"title": "Redis Official Documentation", "url": "https://redis.io/docs/"},
+      {"title": "Redis University Free Courses", "url": "https://university.redis.com/"}
+    ]
+  },
+  "FastAPI": {
+    "why": "Modern high-performance Python web framework featuring type-hints, OpenAPI documentation, and native async support.",
+    "est_hours": 8,
+    "prerequisites": ["Python"],
+    "links": [
+      {"title": "FastAPI Official Documentation", "url": "https://fastapi.tiangolo.com/tutorial/"},
+      {"title": "TestDriven.io FastAPI Guide", "url": "https://testdriven.io/courses/tdd-fastapi/"}
+    ]
+  },
+  "Flask": {
+    "why": "Lightweight, flexible Python microframework ideal for microservices, prototypes, and production APIs.",
+    "est_hours": 8,
+    "prerequisites": ["Python"],
+    "links": [
+      {"title": "Flask Official Tutorial", "url": "https://flask.palletsprojects.com/tutorial/"},
+      {"title": "The Flask Mega-Tutorial", "url": "https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world"}
+    ]
+  },
+  "Django": {
+    "why": "Batteries-included Python web framework with built-in ORM, admin panel, and robust security defaults.",
+    "est_hours": 14,
+    "prerequisites": ["Python", "SQL"],
+    "links": [
+      {"title": "Django Official Getting Started", "url": "https://docs.djangoproject.com/en/stable/intro/tutorial01/"},
+      {"title": "Django for Beginners", "url": "https://djangoforbeginners.com/"}
+    ]
+  },
+  "Kafka": {
+    "why": "Distributed event streaming platform capable of handling trillions of events daily with fault-tolerant pub/sub queues.",
+    "est_hours": 14,
+    "prerequisites": ["Docker"],
+    "links": [
+      {"title": "Apache Kafka Quickstart", "url": "https://kafka.apache.org/quickstart"},
+      {"title": "Confluent Kafka Fundamentals", "url": "https://developer.confluent.io/courses/apache-kafka-fundamentals/intro/"}
+    ]
+  },
+  "RabbitMQ": {
+    "why": "Robust, flexible AMQP message broker ideal for microservices task delegation and decoupled asynchronous workflows.",
+    "est_hours": 8,
+    "prerequisites": ["Docker"],
+    "links": [
+      {"title": "RabbitMQ Official Tutorials", "url": "https://www.rabbitmq.com/getstarted.html"},
+      {"title": "RabbitMQ in Practice", "url": "https://www.cloudamqp.com/blog/part1-rabbitmq-for-beginners-what-is-rabbitmq.html"}
+    ]
+  },
+  "Celery": {
+    "why": "Distributed asynchronous task queue for Python applications handling background processing and scheduling.",
+    "est_hours": 6,
+    "prerequisites": ["Python", "Redis"],
+    "links": [
+      {"title": "Celery First Steps with Python", "url": "https://docs.celeryq.dev/en/stable/getting-started/first-steps-with-celery.html"},
+      {"title": "TestDriven.io Celery and FastAPI", "url": "https://testdriven.io/blog/fastapi-and-celery/"}
+    ]
+  },
+  "AWS": {
+    "why": "Global leading cloud computing platform offering extensive compute, storage, networking, and serverless infrastructure.",
+    "est_hours": 16,
+    "prerequisites": ["Linux"],
+    "links": [
+      {"title": "AWS Cloud Practitioner Essentials", "url": "https://aws.amazon.com/training/digital/aws-cloud-practitioner-essentials/"},
+      {"title": "AWS Skill Builder Free Tier", "url": "https://explore.skillbuilder.aws/"}
+    ]
+  },
+  "CI/CD": {
+    "why": "Automated pipelines ensuring code is tested, vetted, and deployed reliably with every commit.",
+    "est_hours": 6,
+    "prerequisites": ["Git"],
+    "links": [
+      {"title": "GitHub Actions Documentation", "url": "https://docs.github.com/en/actions/quickstart"},
+      {"title": "GitLab CI/CD Getting Started", "url": "https://docs.gitlab.com/ee/ci/quick_start/"}
+    ]
+  },
+  "Git": {
+    "why": "Fundamental distributed version control system tracking source code history and enabling collaborative development.",
+    "est_hours": 6,
+    "prerequisites": [],
+    "links": [
+      {"title": "Pro Git Book (Official)", "url": "https://git-scm.com/book/en/v2"},
+      {"title": "Learn Git Branching (Interactive)", "url": "https://learngitbranching.js.org/"}
+    ]
+  },
+  "Linux": {
+    "why": "Standard operating system underlying servers, cloud instances, and containers across the global software industry.",
+    "est_hours": 8,
+    "prerequisites": [],
+    "links": [
+      {"title": "Linux Journey Interactive Tutorial", "url": "https://linuxjourney.com/"},
+      {"title": "OverTheWire Bandit WarGame", "url": "https://overthewire.org/wargames/bandit/"}
+    ]
+  },
+  "OOP": {
+    "why": "Foundational programming paradigm structuring scalable systems through encapsulation, inheritance, and polymorphism.",
+    "est_hours": 6,
+    "prerequisites": [],
+    "links": [
+      {"title": "Clean Code & SOLID Design Principles", "url": "https://refactoring.guru/design-patterns"},
+      {"title": "Python Object Oriented Programming", "url": "https://realpython.com/python3-object-oriented-programming/"}
+    ]
+  }
+}
+

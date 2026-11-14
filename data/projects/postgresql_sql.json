@@ -1,0 +1,10 @@
+{
+  "ProjectTitle": "High-Performance Relational Analytics Engine & Query Optimizer",
+  "Description": "Design and benchmark a high-scale transactional database schema with partitioned tables, optimized indexes, and complex analytical reporting queries.",
+  "KeySkills": ["PostgreSQL", "SQL", "Database Design", "Python", "Redis"],
+  "ResumeBullets": [
+    "Engineered high-scale transactional PostgreSQL database schema with table partitioning and optimized B-Tree/BRIN indexes across [X]+ million rows.",
+    "Accelerated critical analytical query execution by [X]% through deep execution plan profiling (EXPLAIN ANALYZE) and elimination of full-table scans.",
+    "Implemented Redis read-through caching layer and connection pooling, decreasing database read load by [X]% under peak traffic conditions."
+  ]
+}

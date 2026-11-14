@@ -48,7 +48,7 @@
 <body
     class="bg-[#fafafa] dark:bg-black text-gray-900 dark:text-white font-sans antialiased selection:bg-primary selection:text-white min-h-screen flex flex-col overflow-x-hidden">
 
-    <header class="fixed top-4 w-full z-50 px-6 flex justify-center">
+    <header id="main-header" class="fixed top-4 w-full z-50 px-6 flex justify-center transition-transform duration-300 ease-in-out">
         <nav
             class="flex items-center justify-between bg-white/80 dark:bg-black/80 backdrop-blur-md border border-gray-200 dark:border-[#222] px-6 h-16 rounded-full w-full max-w-5xl shadow-sm">
 
@@ -298,26 +298,38 @@
                         </div>
 
                         <div class="flex flex-col h-full w-full">
-                            <label class="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-1.5">Upload
-                                Resume</label>
-                            <input type="file" id="resume-upload" class="hidden" accept=".pdf">
-                            <label id="dropzone" for="resume-upload"
-                                class="flex-grow flex flex-col items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-xl p-4 bg-white dark:bg-[#111] hover:border-primary dark:hover:border-primary cursor-pointer group text-center min-h-[150px] w-full transition-colors relative">
-                                <svg id="upload-icon"
-                                    class="w-8 h-8 mx-auto text-gray-400 group-hover:text-primary mb-2 transition-colors pointer-events-none"
-                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
-                                    </path>
-                                </svg>
-                                <span id="file-name-display"
-                                    class="text-sm font-bold text-gray-600 dark:text-gray-300 block mb-1 pointer-events-none">Drag
-                                    & drop your PDF here</span>
-                                <span id="file-instruction"
-                                    class="text-xs text-gray-500 dark:text-gray-400 font-medium pointer-events-none">or
-                                    <span class="text-primary underline cursor-pointer">Browse Files</span> (Max
-                                    5MB)</span>
-                            </label>
+                            <div class="flex items-center justify-between mb-1.5">
+                                <label class="block text-sm font-bold text-gray-700 dark:text-gray-300">Resume Input</label>
+                                <div class="flex gap-1 text-xs bg-gray-100 dark:bg-gray-800 p-0.5 rounded-lg border border-gray-200 dark:border-gray-700">
+                                    <button type="button" id="tab-upload-btn" class="px-2.5 py-1 rounded font-bold transition-all bg-white dark:bg-dark text-dark dark:text-white shadow-sm">File</button>
+                                    <button type="button" id="tab-paste-btn" class="px-2.5 py-1 rounded font-bold transition-all text-gray-500 hover:text-dark dark:hover:text-white">Paste Text</button>
+                                </div>
+                            </div>
+                            
+                            <!-- File Upload View -->
+                            <div id="file-input-container" class="flex-grow flex flex-col">
+                                <input type="file" id="resume-upload" class="hidden" accept=".pdf,.docx">
+                                <label id="dropzone" for="resume-upload"
+                                    class="flex-grow flex flex-col items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-xl p-4 bg-white dark:bg-[#111] hover:border-primary dark:hover:border-primary cursor-pointer group text-center min-h-[150px] w-full transition-colors relative">
+                                    <svg id="upload-icon"
+                                        class="w-8 h-8 mx-auto text-gray-400 group-hover:text-primary mb-2 transition-colors pointer-events-none"
+                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
+                                        </path>
+                                    </svg>
+                                    <span id="file-name-display"
+                                        class="text-sm font-bold text-gray-600 dark:text-gray-300 block mb-1 pointer-events-none">Drag & drop your PDF or DOCX here</span>
+                                    <span id="file-instruction"
+                                        class="text-xs text-gray-500 dark:text-gray-400 font-medium pointer-events-none">or <span class="text-primary underline cursor-pointer">Browse Files</span> (Max 5MB)</span>
+                                </label>
+                            </div>
+
+                            <!-- Paste Text View -->
+                            <div id="paste-input-container" class="hidden flex-grow flex flex-col">
+                                <textarea id="resume-paste-text" placeholder="Paste your complete resume text here (minimum 50 characters)..."
+                                    class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#111] text-gray-900 dark:text-white focus:outline-none focus:border-primary resize-none flex-grow min-h-[150px] transition-colors"></textarea>
+                            </div>
                         </div>
                     </div>
 
@@ -425,6 +437,18 @@
                     </div>
                 </div>
 
+                <!-- Roadmap Section -->
+                <div class="mb-8">
+                    <div class="mb-4 text-center md:text-left flex items-center justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-dark dark:text-white">Prioritized Learning Roadmap</h3>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Prerequisites are ordered first using topological dependency sorting.</p>
+                        </div>
+                        <span id="roadmap-count" class="text-[10px] font-bold text-primary bg-blue-50 dark:bg-blue-900/30 px-2.5 py-1 rounded-full">0 Steps</span>
+                    </div>
+                    <div id="roadmap-container" class="space-y-3"></div>
+                </div>
+
                 <div>
                     <div class="mb-4 text-center md:text-left">
                         <h3 class="text-xl font-bold text-dark dark:text-white">Level Up: Project Ideas</h3>
@@ -495,6 +519,8 @@
                             targetSection.classList.add('animate-fade-in');
                         }, 10);
                         window.scrollTo(0, 0);
+                        const headerEl = document.getElementById('main-header');
+                        if (headerEl) headerEl.style.transform = 'translateY(0)';
                     }
                 }
             });
@@ -552,6 +578,31 @@
             }
         }
 
+        // tab switching for file upload vs paste text
+        let currentInputMode = 'file';
+        const tabUploadBtn = document.getElementById('tab-upload-btn');
+        const tabPasteBtn = document.getElementById('tab-paste-btn');
+        const fileInputContainer = document.getElementById('file-input-container');
+        const pasteInputContainer = document.getElementById('paste-input-container');
+
+        if (tabUploadBtn && tabPasteBtn) {
+            tabUploadBtn.addEventListener('click', function () {
+                currentInputMode = 'file';
+                tabUploadBtn.className = 'px-2.5 py-1 rounded font-bold transition-all bg-white dark:bg-dark text-dark dark:text-white shadow-sm';
+                tabPasteBtn.className = 'px-2.5 py-1 rounded font-bold transition-all text-gray-500 hover:text-dark dark:hover:text-white';
+                fileInputContainer.classList.remove('hidden');
+                pasteInputContainer.classList.add('hidden');
+            });
+
+            tabPasteBtn.addEventListener('click', function () {
+                currentInputMode = 'paste';
+                tabPasteBtn.className = 'px-2.5 py-1 rounded font-bold transition-all bg-white dark:bg-dark text-dark dark:text-white shadow-sm';
+                tabUploadBtn.className = 'px-2.5 py-1 rounded font-bold transition-all text-gray-500 hover:text-dark dark:hover:text-white';
+                pasteInputContainer.classList.remove('hidden');
+                fileInputContainer.classList.add('hidden');
+            });
+        }
+
         fileInput.addEventListener('change', function (e) {
             if (e.target.files && e.target.files.length > 0) {
                 var fileName = e.target.files[0].name;
@@ -583,16 +634,28 @@
             const btnSpinner = document.getElementById('analyze-spinner');
 
             errorMsg.classList.add('hidden');
-            if (!resumeFile) {
-                errorMsg.textContent = "Please upload your resume PDF.";
-                errorMsg.classList.remove('hidden');
-                return;
+            const pastedText = (document.getElementById('resume-paste-text')?.value || '').trim();
+
+            if (currentInputMode === 'file') {
+                if (!resumeFile) {
+                    errorMsg.textContent = "Please upload your resume (PDF or DOCX).";
+                    errorMsg.classList.remove('hidden');
+                    return;
+                }
+                const nameLower = resumeFile.name.toLowerCase();
+                if (!nameLower.endsWith('.pdf') && !nameLower.endsWith('.docx')) {
+                    errorMsg.textContent = "Only PDF and DOCX files are supported.";
+                    errorMsg.classList.remove('hidden');
+                    return;
+                }
+            } else {
+                if (pastedText.length < 50) {
+                    errorMsg.textContent = "Please paste your resume text (minimum 50 characters).";
+                    errorMsg.classList.remove('hidden');
+                    return;
+                }
             }
-            if (!resumeFile.name.toLowerCase().endsWith('.pdf')) {
-                errorMsg.textContent = "Only PDF files are supported. Please upload a PDF.";
-                errorMsg.classList.remove('hidden');
-                return;
-            }
+
             if (!jobDesc.trim()) {
                 errorMsg.textContent = "Please paste the Job Description.";
                 errorMsg.classList.remove('hidden');
@@ -604,7 +667,11 @@
             this.disabled = true;
 
             const formData = new FormData();
-            formData.append('resume', resumeFile);
+            if (currentInputMode === 'file') {
+                formData.append('resume', resumeFile);
+            } else {
+                formData.append('resume_text', pastedText);
+            }
             formData.append('job_desc', jobDesc);
 
             try {
@@ -662,13 +729,64 @@
                     missingContainer.innerHTML = '<span class="text-[10px] text-green-500 font-bold">You hit all the major keywords!</span>';
                 }
 
+                // Render Roadmap (skills in order with rank and resources)
+                const roadmapContainer = document.getElementById('roadmap-container');
+                const roadmap = data["Roadmap"] || [];
+                const roadmapCount = document.getElementById('roadmap-count');
+                if (roadmapCount) {
+                    roadmapCount.textContent = roadmap.length + " Steps";
+                }
+                if (roadmapContainer) {
+                    roadmapContainer.innerHTML = '';
+                    if (roadmap.length > 0) {
+                        roadmap.forEach(item => {
+                            const prereqsHtml = (item.prerequisites && item.prerequisites.length > 0)
+                                ? `<div class="text-[11px] text-gray-500 dark:text-gray-400 mt-1"><span class="font-semibold text-gray-600 dark:text-gray-300">Prerequisites:</span> ${item.prerequisites.join(', ')}</div>`
+                                : '';
+
+                            const linksHtml = (item.links && item.links.length > 0)
+                                ? `<div class="flex flex-wrap gap-2 mt-2 pt-2 border-t border-gray-100 dark:border-gray-800">
+                                    ${item.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[11px] text-primary hover:underline font-semibold bg-blue-50 dark:bg-blue-900/30 px-2 py-0.5 rounded">
+                                        <span>${l.title}</span>
+                                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                    </a>`).join('')}
+                                   </div>`
+                                : '';
+
+                            const roadmapCard = `
+                            <div class="p-4 rounded-xl border border-gray-200 dark:border-[#333] bg-white/60 dark:bg-[#111]/40 transition-all hover:border-primary/50">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-7 h-7 rounded-full bg-primary/10 text-primary font-extrabold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">
+                                        ${item.rank}
+                                    </div>
+                                    <div class="flex-grow">
+                                        <div class="flex items-center justify-between flex-wrap gap-2 mb-1">
+                                            <h4 class="text-base font-bold text-dark dark:text-white">${item.skill}</h4>
+                                            <span class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded">~${item.est_hours || 8} hrs</span>
+                                        </div>
+                                        <p class="text-[13px] text-gray-600 dark:text-gray-400 leading-relaxed">${item.why}</p>
+                                        ${prereqsHtml}
+                                        ${linksHtml}
+                                    </div>
+                                </div>
+                            </div>`;
+                            roadmapContainer.insertAdjacentHTML('beforeend', roadmapCard);
+                        });
+                    } else {
+                        roadmapContainer.innerHTML = '<p class="text-sm text-gray-500">No missing skills detected for a roadmap!</p>';
+                    }
+                }
+
                 const projectsContainer = document.getElementById('projects-container');
                 projectsContainer.innerHTML = '';
                 const projects = data["ProjectIdeas"] || [];
 
                 if (projects.length > 0) {
                     projects.forEach((proj, index) => {
-                        let processedSkills = (proj.SkillsPracticed || []).map(skill => {
+                        const projectName = proj.ProjectName || proj.ProjectTitle || 'Recommended Project';
+                        const projectSkills = proj.SkillsPracticed || proj.KeySkills || [];
+
+                        let processedSkills = projectSkills.map(skill => {
                             const matchArray = matchedSkills.map(s => String(s).toLowerCase());
                             const isMatched = matchArray.includes(String(skill).toLowerCase());
                             const cssClasses = isMatched 
@@ -689,10 +807,9 @@
                                 <div class="w-8 h-8 bg-blue-50 dark:bg-blue-900/20 text-primary rounded-lg flex items-center justify-center flex-shrink-0">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${index % 2 === 0 ? 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10' : 'M13 10V3L4 14h7v7l9-11h-7z'}"></path></svg>
                                 </div>
-                                <span class="text-[9px] font-bold text-primary bg-blue-50 dark:bg-blue-900/30 px-2 py-1 rounded">High Impact</span>
                             </div>
-                            <h4 class="text-base font-bold text-dark dark:text-white mb-1.5 group-hover:text-primary transition-colors">${proj.ProjectName || 'Recommended Project'}</h4>
-                            <p class="text-[12px] text-gray-600 dark:text-gray-400 mb-3">${proj.Description || 'Build this project to learn the missing skills.'}</p>
+                            <h4 class="text-base font-bold text-dark dark:text-white mb-1.5 group-hover:text-primary transition-colors">${projectName}</h4>
+                            <p class="text-[12px] text-gray-600 dark:text-gray-400 mb-3">${proj.Description || 'Build this project to learn the target skills.'}</p>
                             <div class="pt-3 border-t border-gray-100 dark:border-[#222]">
                                 <span class="text-[10px] text-gray-500 block mb-1.5 font-semibold uppercase">Skills Required:</span>
                                 <div class="flex flex-wrap gap-1.5">
@@ -717,6 +834,8 @@
                 setTimeout(() => {
                     resultsSection.classList.add('animate-fade-in');
                     window.scrollTo(0, 0);
+                    const headerEl = document.getElementById('main-header');
+                    if (headerEl) headerEl.style.transform = 'translateY(0)';
                 }, 10);
 
             } catch (error) {
@@ -729,6 +848,34 @@
                 this.disabled = false;
             }
         });
+
+        // Smooth auto-hiding navbar on scroll
+        const mainHeader = document.getElementById('main-header');
+        let lastScrollY = window.scrollY;
+
+        window.addEventListener('scroll', function () {
+            if (!mainHeader) return;
+            const currentScrollY = window.scrollY;
+            const resultsSec = document.getElementById('results');
+            const isResultsVisible = resultsSec && !resultsSec.classList.contains('hidden');
+
+            if (isResultsVisible) {
+                // When match report reaches navbar position (scrolling down past ~40px)
+                if (currentScrollY > 40 && currentScrollY > lastScrollY) {
+                    mainHeader.style.transform = 'translateY(-150%)';
+                } else if (currentScrollY < lastScrollY || currentScrollY <= 30) {
+                    mainHeader.style.transform = 'translateY(0)';
+                }
+            } else {
+                // General pages: smooth hide on scroll down, show on scroll up
+                if (currentScrollY > 60 && currentScrollY > lastScrollY) {
+                    mainHeader.style.transform = 'translateY(-150%)';
+                } else if (currentScrollY < lastScrollY || currentScrollY <= 30) {
+                    mainHeader.style.transform = 'translateY(0)';
+                }
+            }
+            lastScrollY = currentScrollY;
+        }, { passive: true });
     </script>
 </body>
 

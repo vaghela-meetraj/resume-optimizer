@@ -1,0 +1,10 @@
+{
+  "ProjectTitle": "Full-Stack Collaborative Workspace & Real-Time Kanban Engine",
+  "Description": "Build a responsive enterprise project management web application featuring instant synchronization, role-based authorization, and modular component architecture.",
+  "KeySkills": ["React", "Node.js", "Express", "TypeScript", "REST APIs"],
+  "ResumeBullets": [
+    "Developed responsive real-time Kanban platform using React and TypeScript, handling [X]+ concurrent users with sub-50ms WebSocket sync.",
+    "Engineered scalable RESTful API with Node.js and Express featuring JWT cookie authentication, role-based access control, and rate limiting.",
+    "Optimized frontend bundle size by [X]% through dynamic code splitting and lazy loading, achieving a 95+ Google Lighthouse performance score."
+  ]
+}

@@ -182,3 +182,67 @@ def calculate_weighted_score(
         "categories": categories_breakdown
     }
 
+
+def extract_jd_priority_keywords(jd_skills: set, jd_text: str, top_k: int = 10) -> list:
+    """
+    Extracts top JD keywords/skills ordered by importance weight:
+    - Required section skills get weight 1.0
+    - Preferred section skills get weight 0.5
+    - Repetitions in the JD add up to +0.5 weight
+    - Preserves exact wording / casing from the JD text where found
+    """
+    if not jd_skills or not jd_text:
+        return []
+
+    sections = split_jd_sections(jd_text)
+    req_text = sections["required_text"].lower()
+    pref_text = sections["preferred_text"].lower()
+    full_jd_lower = jd_text.lower()
+
+    scored = []
+    for skill in jd_skills:
+        skill_str = str(skill).strip()
+        if not skill_str:
+            continue
+        norm = normalize_skill(skill_str)
+
+        # Base weight from section placement
+        if sections["has_sections"]:
+            if norm in req_text or skill_str.lower() in req_text:
+                base_weight = 1.0
+            elif norm in pref_text or skill_str.lower() in pref_text:
+                base_weight = 0.5
+            else:
+                base_weight = 0.8
+        else:
+            base_weight = 0.75
+
+        # Repetitions boost
+        matches = list(re.finditer(rf'\b{re.escape(norm)}\b', full_jd_lower))
+        occurrences = len(matches)
+        rep_bonus = min(max(0, (occurrences - 1) * 0.25), 0.5)
+        total_weight = min(base_weight + rep_bonus, 1.5)
+
+        # Extract exact casing from JD if present
+        exact_wording = skill_str
+        if matches:
+            start, end = matches[0].span()
+            exact_wording = jd_text[start:end]
+
+        scored.append((total_weight, occurrences, exact_wording))
+
+    # Sort highest weight first, then highest occurrences, then longest exact wording
+    scored.sort(key=lambda x: (x[0], x[1], len(x[2])), reverse=True)
+
+    seen = set()
+    result = []
+    for _, _, kw in scored:
+        kw_norm = kw.lower()
+        if kw_norm not in seen:
+            seen.add(kw_norm)
+            result.append(kw)
+        if len(result) >= top_k:
+            break
+
+    return result
+

@@ -1,0 +1,10 @@
+{
+  "ProjectTitle": "Cloud Infrastructure-as-Code & Automated Deployment Engine",
+  "Description": "Provision production-ready, auto-scaling cloud infrastructure across multiple availability zones using Terraform and modern CI/CD automation.",
+  "KeySkills": ["AWS", "Terraform", "CI/CD", "EC2", "S3"],
+  "ResumeBullets": [
+    "Provisioned multi-region AWS cloud infrastructure using modular Terraform templates, cutting environment setup time from [X] days to [X] minutes.",
+    "Configured resilient auto-scaling EC2 instances behind Application Load Balancers with SSL termination and least-privilege IAM security policies.",
+    "Built end-to-end GitOps deployment pipeline with automated terraform linting and plan verification gates, eliminating configuration drift across [X] environments."
+  ]
+}

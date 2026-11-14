@@ -1,0 +1,10 @@
+{
+  "ProjectTitle": "Containerized Microservices Cluster & CI/CD Deployment",
+  "Description": "Architect and deploy an enterprise-grade multi-service application with Docker containerization, Kubernetes orchestration, and automated rolling updates.",
+  "KeySkills": ["Docker", "Kubernetes", "CI/CD", "Linux"],
+  "ResumeBullets": [
+    "Containerized microservices cluster with multi-stage Docker builds, reducing container image size by [X]% and minimizing security vulnerabilities.",
+    "Architected Kubernetes deployment with HPA autoscaling, zero-downtime rolling updates, and automated health check probes across [X]+ pods.",
+    "Built automated GitHub Actions CI/CD pipeline with container scanning, cutting release deployment cycle time by [X]%."
+  ]
+}

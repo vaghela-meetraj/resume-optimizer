@@ -1,0 +1,10 @@
+{
+  "ProjectTitle": "High-Throughput Asynchronous Task & Event Pipeline",
+  "Description": "Engineer an asynchronous Python backend capable of processing high-volume background jobs, rate-limited external API calls, and scheduled data transformations.",
+  "KeySkills": ["Python", "FastAPI", "Celery", "Redis", "Docker"],
+  "ResumeBullets": [
+    "Built high-throughput asynchronous job execution engine using FastAPI, Celery, and Redis, processing [X] tasks/minute with zero dropped messages.",
+    "Implemented distributed task retry mechanisms with exponential backoff and idempotency keys, cutting pipeline failure recovery time by [X]%.",
+    "Containerized asynchronous worker pool using Docker and instrumented Prometheus metrics to monitor queue depth and p99 latency in real time."
+  ]
+}
