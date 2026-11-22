@@ -66,11 +66,12 @@ logs/
 *.bak
 scratch/
 scratch_*.py
+static/AD.png
 
-# Local planning and interview prep
+# Local files
 versions/
 Versions/
 plan/
 Plan/
-INTERVIEW_PREP_COMPLETE_GUIDE.md
-interview_prep_guide.pdf
+Info.md
+Info.pdf
