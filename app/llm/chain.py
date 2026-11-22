@@ -198,9 +198,7 @@ class LLMChain:
                     logger.warning(f"Provider '{name}' retry failed: {e}.")
                     last_problems = [f"API Error: {str(e)[:120]}"]
 
-        # ==========================================
-        # Fallback: Best 4-Key Candidate or Offline Template
-        # ==========================================
+        # Fallback to best 4-key candidate or offline template
         if best_candidate_projects and len(best_candidate_projects) >= 2:
             provider_used = best_candidate_provider or "candidate"
             logger.info(f"Using best 4-key candidate output from '{provider_used}' (retries: {retries_used}).")

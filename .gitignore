@@ -1,15 +1,11 @@
-# ==========================================
-# Python & Bytecode
-# ==========================================
+# Python artifacts
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
 *.pyd
 
-# ==========================================
-# Virtual Environments
-# ==========================================
+# Virtual environments
 .venv/
 venv/
 env/
@@ -17,9 +13,7 @@ ENV/
 env.bak/
 venv.bak/
 
-# ==========================================
-# Environment Variables & Secrets (CRITICAL)
-# ==========================================
+# Environment variables and secrets
 .env
 .env.*
 !.env.example
@@ -27,9 +21,7 @@ venv.bak/
 *.key
 *.cert
 
-# ==========================================
-# Testing, Linting & Coverage
-# ==========================================
+# Testing and coverage
 .pytest_cache/
 .ruff_cache/
 .mypy_cache/
@@ -40,9 +32,7 @@ htmlcov/
 *.cover
 *.pyre/
 
-# ==========================================
-# Operating System Artifacts
-# ==========================================
+# Operating system files
 .DS_Store
 .DS_Store?
 ._*
@@ -52,9 +42,7 @@ htmlcov/
 [Tt]humbs.db
 [Dd]esktop.ini
 
-# ==========================================
-# IDEs & Text Editors
-# ==========================================
+# IDE and text editor files
 .vscode/
 .idea/
 *.swp
@@ -63,17 +51,13 @@ htmlcov/
 *.sublime-project
 *.sublime-workspace
 
-# ==========================================
-# Builds, Distributions & Packages
-# ==========================================
+# Builds and packaging
 build/
 dist/
 *.egg-info/
 *.egg
 
-# ==========================================
-# Logs, Databases & Temporary Files
-# ==========================================
+# Logs and temporary files
 *.log
 logs/
 *.sqlite
@@ -83,10 +67,10 @@ logs/
 scratch/
 scratch_*.py
 
-# ==========================================
-# Local Specifications & Internal Planning
-# ==========================================
+# Local planning and interview prep
 versions/
 Versions/
 plan/
 Plan/
+INTERVIEW_PREP_COMPLETE_GUIDE.md
+interview_prep_guide.pdf

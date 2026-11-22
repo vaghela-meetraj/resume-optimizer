@@ -30,10 +30,10 @@ def validate_library():
                 data = json.load(f)
             # Validate with Pydantic
             project = ProjectIdea.model_validate(data)
-            print(f"✅ {fname:<32} | {project.ProjectTitle[:40]:<40} | {project.Difficulty}")
+            print(f"[OK] {fname:<32} | {project.ProjectTitle[:40]:<40} | {project.Difficulty}")
             valid_count += 1
         except Exception as e:
-            print(f"❌ {fname:<32} | Error: {e}")
+            print(f"[ERROR] {fname:<32} | Error: {e}")
             errors += 1
 
     print("=" * 80)

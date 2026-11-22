@@ -64,9 +64,7 @@ class MockLLMClient(LLMClient):
         }
 
 
-# =========================================================================
-# STEP 5: TESTS
-# =========================================================================
+# Fallback chain integration tests
 
 def test_groq_valid_gemini_never_called():
     """Requirement 1: Groq valid, so Gemini is never called."""
@@ -350,9 +348,7 @@ def test_project_selection_rules_in_prompt_and_schema():
     assert problems == []
 
 
-# =========================================================================
-# VALIDATOR CORE RULES TESTS (Bullet-free & Skill combination)
-# =========================================================================
+# Core validator tests: skill combinations and constraints
 
 def test_validator_accepts_combination_of_missing_and_matching_skills():
     """KeySkills allows a combination of missing and matching skills."""

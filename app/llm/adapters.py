@@ -139,10 +139,6 @@ class GeminiAdapter(LLMClient):
             if "429" in err_str or "quota" in err_str or "resource_exhausted" in err_str:
                 raise RateLimited(f"Gemini rate limit exceeded: {e}", retry_after=60, provider="gemini")
             raise LLMError(f"Gemini API error ({self.model}): {e}")
-            err_str = str(e).lower()
-            if "429" in err_str or "quota" in err_str or "resource_exhausted" in err_str:
-                raise RateLimited(f"Gemini rate limit exceeded: {e}", retry_after=60, provider="gemini")
-            raise LLMError(f"Gemini API error ({self.model}): {e}")
 
 
 class OpenRouterAdapter(LLMClient):

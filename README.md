@@ -1,108 +1,178 @@
 # Resume Optimizer & Skill-Gap Career Coach
 
-An intelligent, full-stack application that analyzes candidate resumes against job descriptions, pinpoints technical skill gaps with high-precision NLP, calculates weighted alignment scores, constructs a topological learning roadmap, and recommends targeted portfolio projects using a multi-provider LLM fallback chain.
+[![Python Version](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.14-blue.svg)](https://www.python.org/)
+[![Flask Version](https://img.shields.io/badge/framework-Flask%203.1-green.svg)](https://flask.palletsprojects.com/)
+[![Tests](https://img.shields.io/badge/tests-55%20passed-success.svg)](tests/)
+[![NLP Engine](https://img.shields.io/badge/NLP%20Engine-PhraseMatcher%20%2B%20Lookarounds-blueviolet.svg)](app/services/nlp.py)
+[![Latency](https://img.shields.io/badge/NLP%20Latency-%3C1ms-orange.svg)](app/services/nlp.py)
+
+An intelligent, production-ready career platform that parses resumes against technical job descriptions, extracts competencies with sub-millisecond precision, computes section-weighted alignment scores, constructs a topologically-sorted prerequisite learning roadmap, and suggests tailored portfolio projects via a resilient multi-provider LLM fallback chain.
 
 ---
 
-## 🌟 Key Capabilities
+## Key Capabilities
 
 ### 1. High-Precision NLP Skill Extraction
-* **Deterministic Phrase Matching:** Built on `spaCy`'s blank English model with a compiled `PhraseMatcher` and canonical dictionary (`data/skills.json`), loading in **sub-1 millisecond** with zero runtime weight downloads.
-* **Exact Boundary Precision:** Uses regex lookarounds `(?<![a-zA-Z0-9+#&])(...) (?![a-zA-Z0-9+#&]|(?:\.[a-zA-Z]))` to eliminate false positives:
-  * `Java` is never falsely credited when `JavaScript` is present.
-  * `C++`, `C#`, and `.NET` are matched with boundary-aware symbol detection.
-  * Common English verbs and acronyms (like *go*, *r&d*) are prevented from triggering false tech matches.
-* **Empirical Benchmark:** Evaluated against ground-truth labels across 10 diverse technical domains, achieving **97.0% Micro-F1** and **98.7% Recall**.
+* **Zero-Weight Deterministic Phrase Matching:** Combines pre-compiled regex boundary lookarounds with `spaCy`'s blank English `PhraseMatcher` and a canonical dictionary ([data/skills.json](data/skills.json)), executing in **<1ms** with zero neural network weight downloads.
+* **Exact Boundary Lookarounds:** Employs `(?<![a-zA-Z0-9+#&])(...) (?![a-zA-Z0-9+#&]|(?:\.[a-zA-Z]))` to eliminate common NLP false positives:
+  * Eliminates false substring matches (e.g., `Java` is never falsely extracted when `JavaScript` is present).
+  * Safely detects technical symbols (`C++`, `C#`, `.NET`).
+  * Isolates single-letter languages (`C`, `R`) and ambiguous terms (`Go`) to prevent collisions with prose verbs or acronyms (e.g., *R&D*).
+  * Distinguishes sentence-ending periods (e.g., `"Experience with Docker."`) from file extension dots.
+* **Evaluation Suite:** Includes an automated evaluation harness across 10 engineering domains and sample resumes to benchmark extraction precision and recall against labeled references.
 
 ### 2. Weighted Scoring Engine v2
-* **Section-Aware Weighting:** Intelligently identifies *Requirements* (weight `1.0`) vs. *Nice to Have / Preferred* qualifications (weight `0.5`).
-* **Term Frequency & Emphasis:** Rewards recurring core skills with up to a `+0.5` weighting bonus.
-* **Match Quality Credit:** Exact matches receive full credit (`1.0`); related/partial matches earn half credit (`0.5`).
-* **Semantic Correlation:** Integrates TF-IDF cosine semantic similarity with harmonic penalty scaling.
+* **Section-Aware Weighting:** Automatically identifies *Requirements / Minimum Qualifications* (base weight `1.0`) versus *Nice to Have / Preferred Qualifications* (base weight `0.5`).
+* **Term Frequency & Repetition Bonus:** Rewards recurring core skills with up to a `+0.5` weighting bonus.
+* **Dialect & Database Credit:** Relational database systems (e.g., PostgreSQL, MySQL) satisfy generic SQL requirements with full credit (`1.0`); general SQL satisfies specific database engine requirements with partial credit (`0.5`).
+* **Semantic Correlation:** Integrates TF-IDF unigram/trigram cosine similarity as a dynamic tie-breaker (up to `+5%`).
+* **True Percentage Scoring:** Removed artificial score ceilings—matching 100% of requirements delivers an honest 100%.
 
 ### 3. Resilient Multi-Provider LLM Fallback Chain
-* **Provider Hierarchy:** Sequentially queries **Groq** (`qwen/qwen3.8-27b`) $\to$ **OpenRouter** (`openrouter/free`) $\to$ **Google Gemini** (`gemini-2.5-flash`).
-* **Automatic Rate Limit Cooldown:** Intercepts HTTP 429 errors and automatically puts rate-limited providers into a timed cooldown before trying the next adapter.
-* **100% Offline Reliability:** If external APIs are exhausted or unconfigured, gracefully falls back to an offline curated project library (`data/projects/`) and deterministic template generators.
-* **7-Day Result Caching:** SHA-256 hashed request caching provides instant sub-10ms response times for identical submissions.
+* **Sequential Provider Priority:** Sequentially queries **Groq** (`qwen/qwen3.8-27b`) $\to$ **OpenRouter** (`openrouter/free`) $\to$ **Google Gemini** (`gemini-2.5-flash`).
+* **Automatic Rate Limit Cooldown:** Intercepts HTTP 429 errors and places rate-limited adapters into an automatic 60-second cooldown window.
+* **Self-Corrective Validation Retry:** Project ideas pass through strict Pydantic and business rule validators. If formatting or overlap criteria fail, validator feedback is injected into a single self-corrective retry.
+* **100% Offline Resilience:** If all external APIs are exhausted or unconfigured, seamlessly falls back to a curated offline project library ([data/projects/](data/projects/)) and deterministic template generators.
+* **7-Day Result Caching:** SHA-256 hashed request caching provides instant sub-10ms responses for repeated queries.
 
-### 4. Token-Efficient Portfolio Project Recommendations
-* **Targeted Problem Solving:** Generates 2 realistic, practical portfolio projects solving concrete real-world problems.
-* **Skill Synergy:** Seamlessly pairs the candidate's existing strengths with target missing skills.
-* **Optimized Token Budget:** Strictly focused on `ProjectTitle`, `Description`, and `KeySkills` badges, cutting token consumption by ~75% and eliminating API timeouts.
+### 4. Topological Learning Roadmap (DAG Kahn's Algorithm)
+* **Prerequisite Graph Resolution:** Analyzes technical skill dependencies from [data/resources.json](data/resources.json) using Kahn's topological sorting algorithm.
+* **Pedagogical Ordering:** Ensures foundational technologies (`Linux`, `Git`, `Docker`) strictly precede dependent advanced tools (`Kubernetes`, `CI/CD`).
+* **Enriched Guidance:** Provides estimated learning hours, priority weights based on missing dependent skills, and verified official documentation links.
 
-### 5. Prioritized Learning Roadmap
-* **Topological Prerequisite Ordering:** Applies Kahn's algorithm over a technical prerequisite DAG (e.g. *Git $\to$ Python $\to$ FastAPI $\to$ Docker $\to$ Kubernetes*).
-* **Difficulty Tiers:** Structured into *Foundational*, *Intermediate*, and *Advanced* phases with realistic completion hour estimates.
-* **Verified Documentation:** Features direct links to 44+ verified official documentation resources (`data/resources.json`).
-
-### 6. Defensive Multi-Format Ingestion
-* **Format Flexibility:** Accepts PDF uploads, Word documents (`.docx`), or direct plain-text pasting with dynamic UI tab switching.
-* **Security & Health Gates:** Magic-byte validation (`%PDF-` and `PK\x03\x04`), 10-page ceiling, scanned PDF image detection, and strict 5MB upload limits.
+### 5. Defensive Multi-Format Ingestion
+* **Format Flexibility:** Ingests digital PDFs, Word documents (`.docx`), or raw pasted text with dynamic UI tab switching.
+* **Deep Security Gates:** Validates raw magic bytes (`%PDF-` for PDF, `PK\x03\x04` for DOCX), rejects scanned PDFs lacking selectable text, enforces a 10-page ceiling, and applies a strict 5MB upload limit.
 
 ---
 
-## 🛠️ Tech Stack
+## System Architecture
 
-| Layer | Technologies |
-| :--- | :--- |
-| **Backend** | Python 3.12, Flask 3.1, Werkzeug |
-| **AI / LLM** | Groq API, OpenRouter API, Google GenAI SDK (`gemini-2.5-flash`), Pydantic v2 |
-| **NLP & Scoring** | spaCy (PhraseMatcher), scikit-learn (TF-IDF & Cosine Similarity) |
-| **Document Processing** | PyPDF2, python-docx |
-| **Frontend** | HTML5, Tailwind CSS, Vanilla JavaScript, Dynamic SVG Gauges |
-| **Testing & QA** | pytest (55 automated tests passing) |
+```mermaid
+flowchart TD
+    Client["Browser Client (HTML5 + Tailwind CSS + Vanilla JS)"] -->|POST /analyze (FormData)| Router["app/routes.py (/analyze)"]
 
----
+    subgraph Ingestion ["1. Defensive Ingestion"]
+        Router --> PDFService["app/services/pdf.py"]
+        PDFService --> MagicByte["Magic Byte Validation (%PDF-, PK)"]
+        PDFService --> TextExtract["In-Memory Text Extraction (<=10 pgs)"]
+    end
 
-## 📁 Repository Structure
+    subgraph NLP ["2. High-Precision NLP Engine"]
+        TextExtract --> NLPProcessor["app/services/nlp.py (NLPProcessor Singleton)"]
+        SkillsJSON["data/skills.json (1,800+ entries)"] --> NLPProcessor
+        NLPProcessor --> PhraseMatcher["spaCy PhraseMatcher (attr='LOWER')"]
+        NLPProcessor --> RegexEngine["Boundary Lookaround Regexes"]
+        NLPProcessor --> ExtractedSkills["Extracted Skills (Resume & JD)"]
+    end
 
-```text
-├── app/
-│   ├── llm/                 # Multi-provider fallback chain & adapters
-│   │   ├── adapters.py      # Groq, Gemini, OpenRouter, and Template adapters
-│   │   ├── base.py          # LLMClient interface & Pydantic schemas
-│   │   ├── chain.py         # Sequential fallback orchestrator & cooldown logic
-│   │   ├── parser.py        # Robust JSON response extraction
-│   │   └── validator.py     # Schema and skill validation
-│   ├── services/            # Business logic & algorithms
-│   │   ├── nlp.py           # spaCy PhraseMatcher & skill extraction
-│   │   ├── pdf.py           # Defensive PDF/DOCX parsing & validation
-│   │   ├── projects.py      # Prompt construction & curated library loader
-│   │   ├── roadmap.py       # Topological prerequisite DAG resolver
-│   │   ├── scoring.py       # Section weighting & semantic matching
-│   │   └── skills.py        # Canonical normalization & boundary matching
-│   ├── config.py            # Environment configurations & limits
-│   └── routes.py            # Flask endpoints & request pipeline
-├── data/
-│   ├── projects/            # Offline curated portfolio project library
-│   ├── resources.json       # 44+ verified official documentation links
-│   └── skills.json          # Canonical technical skill dictionary & aliases
-├── eval/                    # Ground-truth evaluation benchmarks
-│   ├── data/                # Labeled test job descriptions & resumes
-│   ├── results/             # Benchmark evaluation output records
-│   └── run_eval.py          # Evaluation runner (Micro-F1, Precision, Recall)
-├── scripts/                 # Utility scripts (library builder, link checker)
-├── static/                  # CSS stylesheets, logos, and UI assets
-├── templates/               # Responsive Jinja2 frontend template (index.html)
-├── tests/                   # 55 automated unit & integration tests
-│   ├── test_llm_chain.py    # Multi-provider fallback chain tests
-│   ├── test_llm_validation.py # Validator & prompt defense tests
-│   ├── test_matching.py     # Skill boundary & normalization tests
-│   ├── test_projects.py     # Project generation & library tests
-│   ├── test_roadmap.py      # Topological sorting & roadmap tests
-│   ├── test_scoring.py      # Weighted scoring & keyword tests
-│   └── test_uploads.py      # Defensive file upload & parsing tests
-├── .env.example             # Template for API keys and configuration
-├── .gitignore               # Clean repository exclusions
-├── pytest.ini               # Pytest configuration
-├── requirements.txt         # Production dependencies
-└── run.py                   # Application entry point
+    subgraph Scoring ["3. Weighted Scoring Engine v2"]
+        ExtractedSkills --> ScoringService["app/services/scoring.py"]
+        ScoringService --> SectionParser["split_jd_sections (Req 1.0 vs Pref 0.5)"]
+        NLPProcessor --> TFIDF["TF-IDF Cosine Similarity"]
+        SectionParser --> WeightedScore["Weighted Match Score (0 - 100%)"]
+    end
+
+    subgraph Roadmap ["4. Topological Prerequisite Roadmap"]
+        ExtractedSkills -->|Missing Skills| RoadmapService["app/services/roadmap.py"]
+        ResourcesJSON["data/resources.json (DAG Prerequisites)"] --> RoadmapService
+        RoadmapService --> KahnAlgo["Kahn's Topological Sort Algorithm"]
+        KahnAlgo --> PriorityRoadmap["Ranked Learning Path + Doc Links"]
+    end
+
+    subgraph LLMChain ["5. Resilient LLM Fallback Chain"]
+        ExtractedSkills --> ProjectsService["app/services/projects.py"]
+        ProjectsService --> Cache["app/llm/cache.py (SHA-256 7-Day Cache)"]
+        Cache -->|Miss| Chain["app/llm/chain.py (LLMChain Orchestrator)"]
+        Chain --> GroqAdapter["Groq (qwen/qwen3.8-27b)"]
+        GroqAdapter -->|429 / Fail| OpenRouterAdapter["OpenRouter (openrouter/free)"]
+        OpenRouterAdapter -->|429 / Fail| GeminiAdapter["Google Gemini (gemini-2.5-flash)"]
+        GeminiAdapter -->|Fail| CuratedLib["data/projects/ (Offline Curated Library)"]
+        CuratedLib -->|Fail| TemplateAdapter["app/llm/adapters.py (Deterministic Templates)"]
+        Chain --> Validator["app/llm/validator.py (Strict Rules + Self-Correction)"]
+    end
+
+    WeightedScore --> Assembler["JSON Payload Assembly"]
+    PriorityRoadmap --> Assembler
+    Validator --> Assembler
+    Assembler -->|JSON Response| Client
 ```
 
 ---
 
-## 🚀 Quickstart Guide
+## Evaluation Framework
+
+The project includes an evaluation suite in [eval/](eval/) designed to measure skill extraction accuracy across technical domains:
+
+* **Labeled Test Dataset:** 10 diverse job descriptions (Backend, Frontend, Full-Stack, AI/ML, DevOps, Data Engineering, Mobile, Java, Data Science, Embedded Systems) and sample resumes in `eval/data/`.
+* **Ground-Truth References:** Standardized reference skill sets defined in `eval/labels.json`.
+* **Standard Metrics:** Computes Precision, Recall, Micro-F1, and Macro-F1 across all test documents to guide NLP tuning without relying on subjective impressions.
+
+To run the evaluation suite locally:
+```bash
+python eval/run_eval.py
+```
+Results and extraction error analyses are written to `eval/results/baseline.json`.
+
+---
+
+## Tech Stack & Dependencies
+
+| Component | Technology | Rationale |
+| :--- | :--- | :--- |
+| **Web Framework** | Flask 3.1.3, Werkzeug | Lightweight, predictable routing, application factory pattern |
+| **Rate Limiting** | Flask-Limiter 4.1.1 | In-memory sliding window rate limits (10 req/min on `/analyze`) |
+| **Caching** | Flask-Caching 2.4.1 | Low-latency 7-day SHA-256 key-value result cache |
+| **NLP & Matching** | spaCy 3.8, scikit-learn 1.9 | Sub-millisecond PhraseMatcher (`attr='LOWER'`) + TF-IDF cosine similarity |
+| **LLM Orchestration** | OpenAI SDK, google-genai, Pydantic v2 | Standardized `LLMClient` interface, multi-provider fallback, schema validation |
+| **Document Processing** | pypdf 7.1.0, python-docx 1.2.0 | Memory-buffered extraction for PDF, DOCX paragraphs and tables |
+| **Frontend** | HTML5, Tailwind CSS, Vanilla JS | Zero npm dependencies, responsive layout, dynamic SVG score gauges |
+| **Testing** | pytest 9.2.0 | 55 unit and integration tests passing in ~1.5s |
+
+---
+
+## Repository Structure
+
+```text
+├── app/
+│   ├── __init__.py          # Flask app factory (create_app), logging & security headers
+│   ├── config.py            # Environment configurations with safe defaults
+│   ├── extensions.py        # Shared cache & rate limiter singletons
+│   ├── routes.py            # HTTP controllers (/, /analyze, /health, /api/cache/clear)
+│   ├── llm/                 # Multi-provider LLM fallback chain
+│   │   ├── adapters.py      # Groq, Gemini, OpenRouter, and Template adapters
+│   │   ├── base.py          # LLMClient interface & Pydantic models
+│   │   ├── cache.py         # 7-day SHA-256 request cache
+│   │   ├── chain.py         # Sequential fallback orchestrator & cooldown logic
+│   │   ├── parser.py        # Resilient JSON substring & markdown fence extraction
+│   │   └── validator.py     # Schema rules, overlap checks, and corrective retry feedback
+│   └── services/            # Core business logic
+│       ├── nlp.py           # NLPProcessor singleton & PhraseMatcher
+│       ├── pdf.py           # Defensive PDF/DOCX ingestion & magic-byte checking
+│       ├── projects.py      # Prompt construction & curated library loader
+│       ├── roadmap.py       # Kahn's topological sort prerequisite resolver
+│       ├── scoring.py       # Section weighting v2 & semantic matching
+│       └── skills.py        # Canonical normalization & SQL heuristics
+├── data/
+│   ├── projects/            # Curated offline portfolio project library
+│   ├── resources.json       # 44+ verified learning resources with prerequisite graph
+│   └── skills.json          # 1,842-line canonical skills dictionary & aliases
+├── eval/
+│   ├── data/                # 10 labeled job descriptions & 3 resumes
+│   ├── results/             # Benchmark verification records
+│   └── run_eval.py          # Automated evaluation runner (Micro-F1, Precision, Recall)
+├── static/                  # Style sheets and branding assets
+├── templates/               # Responsive Jinja2 frontend template (index.html)
+├── tests/                   # 55 automated unit & integration tests
+├── .env.example             # Documented configuration template
+├── pytest.ini               # Pytest configuration with pythonpath
+├── requirements.txt         # Pinned production dependencies
+└── run.py                   # Application entry point (configurable PORT)
+```
+
+---
+
+## Quickstart Guide
 
 ### 1. Clone the Repository
 ```bash
@@ -113,13 +183,13 @@ cd resume-optimizer
 ### 2. Set Up Virtual Environment
 ```bash
 # Create virtual environment
-python -m venv .venv
+python3 -m venv .venv
+
+# Activate on macOS / Linux:
+source .venv/bin/activate
 
 # Activate on Windows (PowerShell):
-.\.venv\Scripts\Activate.ps1
-
-# Activate on macOS/Linux:
-source .venv/bin/activate
+# .\.venv\Scripts\Activate.ps1
 ```
 
 ### 3. Install Dependencies
@@ -127,57 +197,72 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 4. Configure Environment Variables
-Copy `.env.example` to `.env`:
+### 4. Configure Environment
+Copy [.env.example](.env.example) to `.env`:
 ```bash
-cp .env.example .env    # On Windows: copy .env.example .env
+cp .env.example .env
 ```
 
-Configure your API keys in `.env`:
+Configure API keys in `.env` (optional — offline mode activates automatically if unconfigured):
 ```env
-# Primary LLM Provider
+PORT=5001
+LLM_PROVIDERS=groq,openrouter,gemini
+
 GROQ_API_KEY=your_groq_api_key_here
 GROQ_MODEL=qwen/qwen3.8-27b
 
-# Secondary LLM Provider
 OPENROUTER_API_KEY=your_openrouter_api_key_here
 OPENROUTER_MODEL=openrouter/free
 
-# Tertiary LLM Provider
 GOOGLE_API_KEY=your_gemini_api_key_here
 GEMINI_MODEL=gemini-2.5-flash
-
-# Provider Priority
-LLM_PROVIDERS=groq,openrouter,gemini
 ```
-*(Note: If no API keys are provided, the system automatically uses its offline curated project library).*
 
-### 5. Run the Application
+### 5. Launch the Application
 ```bash
 python run.py
 ```
-Open your browser and navigate to `http://127.0.0.1:5000/`.
+*Note: The server defaults to port `5001` (avoiding the macOS AirPlay Receiver port `5000` collision). Open your browser to:*
+**http://127.0.0.1:5001/**
 
 ---
 
-## 🧪 Testing & Evaluation
+## Testing & Quality Assurance
 
-### Run Test Suite
+### Run Unit & Integration Tests
 ```bash
 python -m pytest
 ```
-*All 55 unit and integration tests execute and pass in ~2 seconds.*
+*All 55 tests pass in ~1.5 seconds:*
+* `test_matching.py`: Boundary precision, canonical normalization, SQL dialect handling.
+* `test_scoring.py`: Section weighting, repetition bonuses, unsectioned fallbacks.
+* `test_roadmap.py`: Topological sorting, DAG prerequisite resolution, hours estimates.
+* `test_projects.py`: Curated library matching, fallback generation, schema fixing.
+* `test_llm_chain.py`: Cooldown handling, daily budget limits, sequential provider fallback.
+* `test_llm_validation.py`: Pydantic validation, sentence count tolerances, verb checks.
+* `test_uploads.py`: File size caps, corrupted files, scanned PDF detection, DOCX tables.
 
-### Run NLP Accuracy Benchmark
+### Run Benchmark Evaluation
 ```bash
 python eval/run_eval.py
 ```
-*Evaluates skill extraction precision, recall, and Micro-F1 against ground-truth labeled documents across 10 engineering domains.*
 
 ---
 
-## 🔒 Security & Privacy
+## REST API Reference
 
-* **In-Memory File Processing:** Uploaded resumes are parsed strictly in memory and are never saved to disk.
+| Endpoint | Method | Rate Limit | Description |
+| :--- | :--- | :--- | :--- |
+| `/` | `GET` | None | Renders the primary user interface. |
+| `/analyze` | `POST` | 10 per min | Ingests resume (`resume` file or `resume_text`) and `job_desc`. Returns ATS match score, extracted skills, topological roadmap, and recommended projects. |
+| `/health` | `GET` | None | Returns server health status, loaded NLP engine state, and active LLM providers. |
+| `/api/cache/clear` | `POST`, `GET` | None | Flushes the 7-day SHA-256 project recommendation cache. |
+
+---
+
+## Security & Privacy Guarantees
+
+* **In-Memory Streaming:** Resumes are processed strictly in RAM buffers via `io.BytesIO` and are never written to disk.
 * **Prompt Privacy:** Candidate personal details (names, phone numbers, addresses, emails) are stripped prior to external LLM calls; only sanitized technical tokens are sent.
-* **Defensive Boundaries:** Enforces strict 5MB upload ceilings, magic-byte format validation, and limits text extraction to 10 pages max.
+* **Injection Defense:** User-supplied job descriptions are isolated inside `<job_description>` XML boundaries to prevent prompt hijacking.
+* **Upload Safety:** Strict 5MB limit (`MAX_CONTENT_LENGTH`), magic-byte inspection, and a 10-page extraction ceiling protect against decompression bombs.

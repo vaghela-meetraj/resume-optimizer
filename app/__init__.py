@@ -6,7 +6,6 @@ from flask import Flask, jsonify, request
 
 from .config import load_config
 from .extensions import cache, limiter
-from .services.llm import configure_gemini_client
 from .services.nlp import NLPProcessor
 
 

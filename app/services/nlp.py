@@ -210,5 +210,5 @@ class NLPProcessor:
             vectors = vectorizer.fit_transform([resume_text, jd_text])
             return float(cosine_similarity(vectors[0:1], vectors[1:2])[0][0] * 100)
         except Exception as e:
-            print(f"⚠️ Similarity calculation failed: {e}")
+            print(f"[!] Similarity calculation failed: {e}")
             return 0.0

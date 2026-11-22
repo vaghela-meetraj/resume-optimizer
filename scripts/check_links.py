@@ -34,7 +34,7 @@ def check_all_links():
 
             # Check URL format
             if not url.startswith("http://") and not url.startswith("https://"):
-                print(f"❌ [{skill}] {title}: Invalid URL scheme '{url}'")
+                print(f"[ERROR] [{skill}] {title}: Invalid URL scheme '{url}'")
                 broken_count += 1
                 continue
 
@@ -49,14 +49,14 @@ def check_all_links():
                     if resp.status < 400:
                         ok_count += 1
                     else:
-                        print(f"⚠️ [{skill}] {title}: HTTP {resp.status}")
+                        print(f"[WARN] [{skill}] {title}: HTTP {resp.status}")
                         broken_count += 1
             except urllib.error.HTTPError as e:
                 # 403 or 999 from Cloudflare anti-bot is common on public scrapers; 404 is truly broken
                 if e.code in (403, 999, 429):
                     ok_count += 1
                 else:
-                    print(f"❌ [{skill}] {title} ({url}): HTTP {e.code}")
+                    print(f"[ERROR] [{skill}] {title} ({url}): HTTP {e.code}")
                     broken_count += 1
             except Exception:
                 # Soft check (network timeout / DNS)
